@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'login' => 'sessions#new'
+  resources :sessions, only: [:create]
+  delete 'sessions/:id' => 'sessions#destroy', as: 'logout'
+  
   resources :roasters do
     resources :coffees
   end
@@ -10,5 +14,5 @@ Rails.application.routes.draw do
 
   get 'cups/index' => 'cups#index'
   root 'cups#index'
-  
+
 end
