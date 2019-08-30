@@ -3,23 +3,19 @@
 
 <%= form_for(@user) do |f| %>
     <p>
-        <%= f.label :first_name %><br>
-        <%= f.text_field :first_name, placeholder: @user. %>
+        <%= f.text_field :first_name, placeholder: (@user.errors.full_messages_for(:first_name).first || "First name") %>
     </p>
 
     <p>
-        <%= f.label :last_name %><br>
-        <%= f.text_field :last_name %>
+        <%= f.text_field :last_name, placeholder: (@user.errors.full_messages_for(:last_name).first || "Last name") %>
     </p>
 
     <p>
-        <%= f.label :email %><br>
-        <%= f.email_field :email %>
+        <%= f.email_field :email, placeholder: (@user.errors.full_messages_for(:email).first || "Email") %>
     </p>
 
     <p>
-        <%= f.label :password %><br>
-        <%= f.password_field :password %>
+        <%= f.password_field :password, placeholder: (@user.errors.full_messages_for(:password).first || "Password") %>
     </p>
 
     <%= f.submit 'Sign up'%>
