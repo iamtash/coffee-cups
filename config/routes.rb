@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show] do
     resources :cups, only: [:new, :create, :edit, :show]
   end
+  get 'signup' => 'users#new'
 
   get 'cups/index' => 'cups#index'
   root 'cups#index'
