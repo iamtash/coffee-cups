@@ -8,12 +8,11 @@ Rails.application.routes.draw do
     resources :coffees
   end
 
-  resources :users, only: [:new, :create, :show] do
-    resources :cups, only: [:new, :create, :edit, :show]
-  end
+  resources :users, only: [:new, :create, :show]
   get 'signup' => 'users#new'
 
-  get 'cups/index' => 'cups#index'
+  resources :cups
+
   root 'cups#index'
 
 end
