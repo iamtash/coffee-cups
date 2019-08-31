@@ -1,2 +1,23 @@
-<h1>Cups#new</h1>
-<p>Find me in app/views/cups/new.html.erb</p>
+<h1>Sip a Cup</h1>
+
+<%= form_for(@cup) do |f| %>
+    <%= select_tag 'cup[brew]', options_for_select(@brews) %>
+    <%= select_tag 'cup[coffee_id]', options_from_collection_for_select(@coffees, 'id', 'name') %>
+    <%= f.fields_for :coffee do |coffee| %>
+        <p>
+        <%= coffee.label :name %>
+        <%= coffee.text_field :name %>
+        </p>
+
+        <p>
+        <%= coffee.label :roast %>
+        <%= coffee.select :roast, @roasts  %>
+        </p>
+    <% end %>
+    <p><%= f.submit 'Sip' %></p>
+<% end %>
+
+
+
+
+
