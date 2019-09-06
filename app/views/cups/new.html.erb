@@ -1,19 +1,47 @@
 <h1>Sip a Cup</h1>
 
 <%= form_for(@cup) do |f| %>
-    <%= select_tag 'cup[brew]', options_for_select(@brews) %>
-    <%= select_tag 'cup[coffee_id]', options_from_collection_for_select(@coffees, 'id', 'name') %>
-    <%= f.fields_for :coffee do |coffee| %>
-        <p>
-        <%= coffee.label :name %>
-        <%= coffee.text_field :name %>
-        </p>
+    <p>
+    <%= f.label :brew, 'Select brew' %><br>
+    <%= f.select :brew, options_for_select(@brews) %>
+    </p>
+    <p>
+    <%= f.label :coffee_id, 'Select coffee'%><br>
+    <%= f.select :coffee_id, options_from_collection_for_select(@coffees, 'id', 'description'), { include_blank: true } %>
+    </p>
+    <fieldset>
+        <legend>New Coffee</legend>
+        <%= f.fields_for :coffee, @coffee do |ff| %>
+            <p>
+                <%= ff.label :name %>
+                <%= ff.text_field :name %>
+            </p>
 
-        <p>
-        <%= coffee.label :roast %>
-        <%= coffee.select :roast, @roasts  %>
-        </p>
-    <% end %>
+            <p>
+                <%= ff.label :roast, 'Select roast' %><br>
+                <%= ff.select :roast, @roasts  %>
+            </p>
+
+            <p>
+                <%= ff.label :roaster_id, 'Select roaster' %><br>
+                <%= ff.select :roaster_id, options_from_collection_for_select(@roasters, 'id', 'name'), { include_blank: true } %>
+            </p>
+            <fieldset>
+                <legend>New Roaster</legend>
+                <%= ff.fields_for :roaster, @roaster do |fff| %>
+                    <p>
+                        <%= fff.label :name %>
+                        <%= fff.text_field :name %>
+                    </p>
+
+                    <p>
+                        <%= fff.label :location %>
+                        <%= fff.text_field :location %>
+                    </p>
+            <% end %>
+        </fieldset>
+        <% end %>
+    </fieldset>
     <p><%= f.submit 'Sip' %></p>
 <% end %>
 

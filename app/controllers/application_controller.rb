@@ -22,5 +22,9 @@ class ApplicationController < ActionController::Base
         redirect_to login_path unless logged_in?
     end
 
+    def set_obj(klass)
+        klass.find_by(id: params[:id])
+    end
+
 end
 
