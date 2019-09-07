@@ -1,2 +1,18 @@
-<h1>Cups#index</h1>
-<p>Find me in app/views/cups/index.html.erb</p>
+<h1>Coffee Cups</h1>
+<h3>Welcome, <%= current_user.first_name %>!</h3>
+<h4><%= link_to("You've sipped", current_user) %> <%= pluralize(current_user.cups.size, 'cup') %>!</h4>
+
+<% if !@cups.empty? %>
+    <ul>
+    <% @cups.each do |cup|%>
+    <p><li><%= cup.user.first_name %> had a <%= link_to('cup', cup) %> of <%= link_to(cup.coffee.name, roaster_coffee_path(cup.coffee.roaster, cup.coffee)) %> on <%= cup.sip_date %>.</li></p>
+    
+    <% end %>
+    </ul>
+<% else %>
+    No one has sipped any cups yet! 
+<% end %>
+
+<%= button_to('SIP A CUP', new_cup_path) %>
+
+<%= button_to('Log out', logout_path(current_user)) %>
