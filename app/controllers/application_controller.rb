@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
         user = User.find_by(email: email)
         if user && user.authenticate(password)
           session[:user_id] = user.id
+          redirect_to root_path
         else
-          session[:message] = "Login failed. Please enter your email and password to log in."
+          flash[:message] = "Login failed. Please enter your email and password to log in."
           redirect_to login_path
         end
     end
@@ -24,7 +25,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_obj(klass)
-        klass.find(params[:id])
+        klass.find_by(id: params[:id])
     end
 
 end
