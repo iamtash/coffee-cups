@@ -4,23 +4,35 @@ class CupsController < ApplicationController
   def new
     @cup = Cup.new
     @brews = Cup.brews
-    @coffees = Coffee.all
+    @coffee = @cup.build_coffee
     @roasts = Coffee.roasts
+    @roaster = @coffee.build_roaster
   end
 
   def create
-    raise params.inspect
-    @cup = cup.new(cup_params)
+    @cup = Cup.new(cup_params)
     @cup.user = current_user
+    if @cup.save
+      redirect_to @cup 
+    else
+      @brews = Cup.brews
+      @coffee = @cup.coffee
+      @roasts = Coffee.roasts
+      @roaster = @coffee.roaster
+      render :new
+    end
   end
 
   def edit
+    @cup = set_obj(Cup)
   end
 
   def show
+    @cup = set_obj(Cup)
   end
 
   def index
+    @cups = Cup.all
   end
 
   private
@@ -28,7 +40,10 @@ class CupsController < ApplicationController
       params.require(:cup).permit(:brew, :coffee_id, coffee_attributes: [
         :name,
         :roast,
-        :roaster_id
+        roaster_attributes: [
+          :name,
+          :location
+        ]
       ]
       )
     end
