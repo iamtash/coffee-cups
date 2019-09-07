@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    helper_method :current_user
 
     def login(email:, password:)
         user = User.find_by(email: email)
@@ -20,6 +21,10 @@ class ApplicationController < ActionController::Base
 
     def require_login
         redirect_to login_path unless logged_in?
+    end
+
+    def set_obj(klass)
+        klass.find(params[:id])
     end
 
 end
