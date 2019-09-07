@@ -25,14 +25,34 @@ class CupsController < ApplicationController
 
   def edit
     @cup = set_obj(Cup)
+    @brews = Cup.brews
+    @coffee = @cup.coffee 
+    @roasts = Coffee.roasts
+    @roaster = @coffee.roaster
+  end
+
+  def update
+    @cup = set_obj(Cup)
+    if @cup.update(cup_params)
+      redirect_to @cup 
+    else  
+      render :edit
+    end
   end
 
   def show
+    @user = User.find_by(id: params[:user_id])
     @cup = set_obj(Cup)
   end
 
   def index
     @cups = Cup.all
+  end
+
+  def destroy
+    set_obj(Cup).destroy
+    session[:message] = "Your cup has been deleted."
+    redirect_to root_path
   end
 
   private
