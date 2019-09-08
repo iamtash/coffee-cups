@@ -1,40 +1,23 @@
 <h1>Sip a Cup</h1>
 
 <%= form_for(@cup) do |f| %>
-    <p>
-    <%= f.label :brew, 'Select Brew'%><br>
-    <%= f.select :brew, options_for_select(@brews) %>
-    </p>
-    <fieldset>
-    <legend>Coffee</legend>
-        <%= f.fields_for :coffee, @coffee do |ff| %>
-            <p>
-            <%= ff.label :name %>
-            <%= ff.text_field :name, placeholder: (@cup.errors.full_messages_for(:coffee).first || "House Blend") %>
-            </p>
 
-            <p>
-            <%= ff.label :roast %>
-            <%= ff.select :roast, @roasts  %>
-            </p>
-    </fieldset>
-    <fieldset>
-    <legend>Roaster</legend>
-            <%= ff.fields_for :roaster, @roaster do |fff| %>
-                <p>
-                <%= fff.label :name %>
-                <%= fff.text_field :name, placeholder: (@cup.coffee.errors.full_messages_for(:roaster).first || "Starbucks") %>
-                </p>
+    <%= render partial: 'form', locals: {
+            f: f,
+            cup: @cup, 
+            brews: @brews, 
+            coffee: @coffee, 
+            roasts: @roasts, 
+            roaster: @roaster
+        } 
+    %>
 
-                <p>
-                <%= fff.label :location %>
-                <%= fff.text_field :location %>
-                </p>
-    </fieldset>
-            <% end %>
-        <% end %>
     <p><%= f.submit 'Sip' %></p>
 <% end %>
+
+<%= render partial: 'sessions/nav' %>
+    
+
 
 
 

@@ -1,0 +1,32 @@
+    <p>
+    <%= f.label :brew, 'Select Brew'%><br>
+    <%= f.select :brew, options_for_select(brews) %>
+    </p>
+    <fieldset>
+    <legend>Coffee</legend>
+        <%= f.fields_for :coffee, coffee do |ff| %>
+            <p>
+            <%= ff.label :name %><br>
+            <%= ff.text_field :name, placeholder: (error_msgs(cup, :coffee) || "House Blend") %>
+            </p>
+
+            <p>
+            <%= ff.label :roast %><br>
+            <%= ff.select :roast, roasts  %>
+            </p>
+    </fieldset>
+    <fieldset>
+    <legend>Roaster</legend>
+            <%= ff.fields_for :roaster, roaster do |fff| %>
+                <p>
+                <%= fff.label :name %><br>
+                <%= fff.text_field :name, placeholder: (error_msgs(coffee, :roaster) || "Starbucks") %>
+                </p>
+
+                <p>
+                <%= fff.label :location %><br>
+                <%= fff.text_field :location %>
+                </p>
+    </fieldset>
+            <% end %>
+        <% end %>

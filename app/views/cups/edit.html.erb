@@ -1,2 +1,18 @@
-<h1>Cups#edit</h1>
-<p>Find me in app/views/cups/edit.html.erb</p>
+<h1>Edit Cup</h1>
+
+<%= form_for(@cup) do |f| %>
+
+    <%= render partial: 'form', locals: {
+            f: f,
+            cup: @cup, 
+            brews: @brews, 
+            coffee: @coffee, 
+            roasts: @roasts, 
+            roaster: @roaster
+        } 
+    %>
+
+    <p><%= f.submit 'Update' %></p>
+<% end %>
+
+<%= render partial: 'sessions/nav' %>
