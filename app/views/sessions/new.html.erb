@@ -1,2 +1,13 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<%= render partial: 'message' %>
+
+<h1>User Login</h1>
+
+<%= form_for(@user, url: sessions_path) do |f| %>
+    <%= render 'users/credentials', {f: f, user: @user} %>
+
+    <%= f.submit 'Log in'%>
+<% end %>
+
+<p>
+<%= link_to('Sign up', signup_path) %>
+</p>
