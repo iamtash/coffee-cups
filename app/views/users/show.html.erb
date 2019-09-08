@@ -1,10 +1,10 @@
 <h1>Cups you've sipped</h1>
 
-<% if @user.cups.empty? %>
+<% if @cups.empty? %>
     You haven't sipped any cups of coffee yet!
 <% else %>
     <ul>
-    <% @user.cups.each do |cup| %>
+    <% @cups.each do |cup| %>
         <%= render 'cup_li', {cup: cup} %>
     <% end %>
     </ul>
