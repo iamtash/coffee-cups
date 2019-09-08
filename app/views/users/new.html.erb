@@ -3,20 +3,22 @@
 
 <%= form_for(@user) do |f| %>
     <p>
-        <%= f.text_field :first_name, placeholder: (@user.errors.full_messages_for(:first_name).first || "First name") %>
+    <%= f.text_field :first_name, placeholder: (error_msgs(@user, :first_name) || "First name") %>
     </p>
 
     <p>
-        <%= f.text_field :last_name, placeholder: (@user.errors.full_messages_for(:last_name).first || "Last name") %>
+    <%= f.text_field :last_name, placeholder: (error_msgs(@user, :last_name) || "Last name") %>
     </p>
 
-    <p>
-        <%= f.email_field :email, placeholder: (@user.errors.full_messages_for(:email).first || "Email") %>
-    </p>
+    <%= render 'credentials', {f: f, user: @user} %>
 
     <p>
-        <%= f.password_field :password, placeholder: (@user.errors.full_messages_for(:password).first || "Password") %>
+    <%= f.password_field :password_confirmation, placeholder: (@user.errors.messages[:password_confirmation].first || 'Confirm password') %>
     </p>
 
     <%= f.submit 'Sign up'%>
 <% end %>
+
+<p>
+<%= link_to('Log in', login_path) %>
+</p>
