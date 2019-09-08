@@ -6,18 +6,23 @@ class CupsController < ApplicationController
     @brews = Cup.brews
     @coffee = @cup.build_coffee
     @roasts = Coffee.roasts
+    @rating = @coffee.ratings.build
+    @scale = Rating.scale
     @roaster = @coffee.build_roaster
   end
 
   def create
     @cup = Cup.new(cup_params)
     @cup.user = current_user
+    raise @cup.inspect
     if @cup.save
       redirect_to @cup 
     else
       @brews = Cup.brews
       @coffee = @cup.coffee
       @roasts = Coffee.roasts
+      @rating = @coffee.ratings.build
+      @scale = Rating.scale
       @roaster = @coffee.roaster
       render :new
     end
@@ -46,7 +51,7 @@ class CupsController < ApplicationController
   end
 
   def index
-    @cups = Cup.all
+    @cups = Cup.order(created_at: :desc)
   end
 
   def destroy
@@ -60,6 +65,9 @@ class CupsController < ApplicationController
       params.require(:cup).permit(:brew, :coffee_id, coffee_attributes: [
         :name,
         :roast,
+        ratings_attributes: [
+          :rating
+        ],
         roaster_attributes: [
           :name,
           :location

@@ -19,4 +19,14 @@ class Coffee < ApplicationRecord
         end
     end
 
+    def ratings_attributes=(rating_attributes)
+        self.ratings.create(rating_attributes.values.first)
+    end
+
 end
+
+# "coffee_attributes"=>{
+#     "name"=>"", 
+#     "roast"=>"Light", 
+#     "ratings_attributes"=>{
+#         "0"=>{"rating"=>"1"}

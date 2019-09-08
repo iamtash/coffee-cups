@@ -14,6 +14,11 @@
             <%= ff.label :roast %><br>
             <%= ff.select :roast, roasts  %>
             </p>
+
+            <%= ff.fields_for :ratings, rating do |fff| %>
+                <%= fff.label :rating %><br>
+                <%= fff.select :rating, options_for_select(scale) %>
+            <% end %>
     </fieldset>
     <fieldset>
     <legend>Roaster</legend>
