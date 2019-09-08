@@ -1,2 +1,15 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>Cups you've sipped</h1>
+
+<% if @user.cups.empty? %>
+    You haven't sipped any cups of coffee yet!
+<% else %>
+    <ul>
+    <% @user.cups.each do |cup| %>
+        <%= render 'cup_li', {cup: cup} %>
+    <% end %>
+    </ul>
+<% end %>
+
+<%= render 'sessions/nav' %>
+
+
