@@ -14,7 +14,8 @@ class UsersController < ApplicationController
 
   def show
     redirect_to login_path unless logged_in?
-    @user = User.find_by(id: params[:id])
+    @user = set_obj(User)
+    @cups = @user.cups.order(created_at: :desc)
   end
 
   private
