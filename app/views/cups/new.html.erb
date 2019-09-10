@@ -1,4 +1,4 @@
-<h1>Sip a Cup</h1>
+<h2>Sip a Cup</h2>
 
 <%= form_for(@cup) do |f| %>
 
@@ -8,16 +8,14 @@
             brews: @brews, 
             coffee: @coffee, 
             roasts: @roasts, 
-            rating: @rating,
+            roaster: @roaster,
             scale: @scale,
-            roaster: @roaster
+            rating: @rating
         } 
     %>
 
     <p><%= f.submit 'Sip' %></p>
 <% end %>
-
-<%= render partial: 'sessions/nav' %>
     
 
 
