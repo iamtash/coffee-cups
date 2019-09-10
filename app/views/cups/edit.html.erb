@@ -1,4 +1,4 @@
-<h1>Edit Cup</h1>
+<h2>Edit Cup</h2>
 
 <%= form_for(@cup) do |f| %>
 
@@ -7,12 +7,12 @@
             cup: @cup, 
             brews: @brews, 
             coffee: @coffee, 
-            roasts: @roasts, 
-            roaster: @roaster
+            roasts: @roasts,
+            roaster: @roaster,
+            scale: @scale,
+            rating: @rating
         } 
     %>
 
     <p><%= f.submit 'Update' %></p>
 <% end %>
-
-<%= render partial: 'sessions/nav' %>
