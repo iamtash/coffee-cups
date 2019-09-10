@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
   get 'signup' => 'users#new'
 
-  resources :cups, only: [:new, :create, :index, :destroy]
+  resources :cups, only: [:new, :create, :update, :index, :destroy]
 
   root 'cups#index'
 
