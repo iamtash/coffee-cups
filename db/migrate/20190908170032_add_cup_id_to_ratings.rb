@@ -1,0 +1,5 @@
+class AddCupIdToRatings < ActiveRecord::Migration[5.2]
+  def change
+    add_column :ratings, :cup_id, :integer
+  end
+end
