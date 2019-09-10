@@ -2,8 +2,8 @@ class Coffee < ApplicationRecord
     belongs_to :roaster
     has_many :cups
     has_many :users, through: :cups
-    has_many :ratings
-    validates :name, presence: true, uniqueness: {scope: :roaster}
+    has_many :ratings, through: :cups
+    validates :name, presence: true, uniqueness: {scope: :roaster, case_sensitive: false}
     validates :roast, presence: true
     validates_associated :roaster
 
@@ -18,15 +18,4 @@ class Coffee < ApplicationRecord
             roaster.update(roaster_attributes)
         end
     end
-
-    def ratings_attributes=(rating_attributes)
-        self.ratings.create(rating_attributes.values.first)
-    end
-
 end
-
-# "coffee_attributes"=>{
-#     "name"=>"", 
-#     "roast"=>"Light", 
-#     "ratings_attributes"=>{
-#         "0"=>{"rating"=>"1"}
