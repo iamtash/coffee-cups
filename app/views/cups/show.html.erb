@@ -1,5 +1,5 @@
 <p>
-<%= @user.first_name %> enjoyed <%= @cup.a_or_an %> <%= @cup.brew %> on <%= @cup.sip_time %>.
+<%= @user.first_name %> enjoyed <%= @cup.brew.a_or_an %> <%= @cup.brew.method %> on <%= @cup.sip_time %>.
 <br>
 The coffee was brewed with <%= link_to(@cup.coffee.name, roaster_coffee_path(@cup.coffee.roaster, @cup.coffee)) %> beans from <%= link_to(@cup.coffee.roaster.name, @cup.coffee.roaster) %>.
 </p>
@@ -8,7 +8,5 @@ The coffee was brewed with <%= link_to(@cup.coffee.name, roaster_coffee_path(@cu
     <%= button_to('Edit Cup', edit_user_cup_path(@user, @cup), method: 'get') %>
     <%= button_to('Delete Cup', @cup, method: 'delete') %>
 <% end %>
-
-<%= render partial: 'sessions/nav' %>
 
 
