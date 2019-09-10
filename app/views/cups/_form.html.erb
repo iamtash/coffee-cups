@@ -1,37 +1,41 @@
-    <p>
-    <%= f.label :brew, 'Select Brew'%><br>
-    <%= f.select :brew, options_for_select(brews) %>
-    </p>
-    <fieldset>
-    <legend>Coffee</legend>
-        <%= f.fields_for :coffee, coffee do |ff| %>
+<p>
+<%= f.label :brew_id, 'Select Brew' %><br>
+<%= f.select :brew_id, options_from_collection_for_select(@brews, 'id', 'capitalized', f.object.brew_id) %>
+</p>
+<fieldset>
+<legend>Coffee</legend>
+    <%= f.fields_for :coffee, coffee do |ff| %>
+        <p>
+        <%= ff.label :name %><br>
+        <%= ff.text_field :name, placeholder: (error_msgs(cup, :coffee) || "Breakfast Blend") %>
+        </p>
+
+        <p>
+        <%= ff.label :roast %><br>
+        <%= ff.select :roast, roasts  %>
+        </p>
+</fieldset>
+<fieldset>
+<legend>Roaster</legend>
+        <%= ff.fields_for :roaster, roaster do |fff| %>
             <p>
-            <%= ff.label :name %><br>
-            <%= ff.text_field :name, placeholder: (error_msgs(cup, :coffee) || "House Blend") %>
+            <%= fff.label :name %><br>
+            <%= fff.text_field :name, placeholder: (error_msgs(coffee, :roaster) || "Starbucks") %>
             </p>
 
             <p>
-            <%= ff.label :roast %><br>
-            <%= ff.select :roast, roasts  %>
+            <%= fff.label :location %><br>
+            <%= fff.text_field :location, placeholder: (error_msgs(roaster, :location) || "Seattle") %>
             </p>
-
-            <%= ff.fields_for :ratings, rating do |fff| %>
-                <%= fff.label :rating %><br>
-                <%= fff.select :rating, options_for_select(scale) %>
-            <% end %>
-    </fieldset>
-    <fieldset>
-    <legend>Roaster</legend>
-            <%= ff.fields_for :roaster, roaster do |fff| %>
-                <p>
-                <%= fff.label :name %><br>
-                <%= fff.text_field :name, placeholder: (error_msgs(coffee, :roaster) || "Starbucks") %>
-                </p>
-
-                <p>
-                <%= fff.label :location %><br>
-                <%= fff.text_field :location %>
-                </p>
-    </fieldset>
-            <% end %>
+</fieldset>
         <% end %>
+    <% end %>
+
+    <%= f.fields_for :rating, rating do |ff| %>
+        <p>
+        <%= f.label :rating, "Rate it!" %><br> 
+        <%= ff.select :rating, options_for_select(scale, f.object.rating.rating) %>
+        </p>
+        <%= ff.hidden_field :user_id, value: current_user.id %>
+    <% end %>
+    
