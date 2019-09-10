@@ -3,10 +3,10 @@ class CupsController < ApplicationController
 
   def new
     @cup = Cup.new
-    @brews = Cup.brews
+    @brews = Brew.all
     @coffee = @cup.build_coffee
     @roasts = Coffee.roasts
-    @rating = @coffee.ratings.build
+    @rating = @cup.build_rating
     @scale = Rating.scale
     @roaster = @coffee.build_roaster
   end
@@ -14,14 +14,13 @@ class CupsController < ApplicationController
   def create
     @cup = Cup.new(cup_params)
     @cup.user = current_user
-    raise @cup.inspect
     if @cup.save
-      redirect_to @cup 
+      redirect_to user_cup_path(current_user, @cup)
     else
-      @brews = Cup.brews
+      @brews = Brew.all
       @coffee = @cup.coffee
       @roasts = Coffee.roasts
-      @rating = @coffee.ratings.build
+      @rating = @cup.rating
       @scale = Rating.scale
       @roaster = @coffee.roaster
       render :new
@@ -30,16 +29,18 @@ class CupsController < ApplicationController
 
   def edit
     @cup = set_obj(Cup)
-    @brews = Cup.brews
+    @brews = Brew.all
     @coffee = @cup.coffee 
     @roasts = Coffee.roasts
     @roaster = @coffee.roaster
+    @scale = Rating.scale
+    @rating = @cup.rating
   end
 
   def update
     @cup = set_obj(Cup)
     if @cup.update(cup_params)
-      redirect_to @cup 
+      redirect_to user_cup_path(current_user, @cup)
     else  
       render :edit
     end
@@ -62,17 +63,20 @@ class CupsController < ApplicationController
 
   private
     def cup_params
-      params.require(:cup).permit(:brew, :coffee_id, coffee_attributes: [
-        :name,
-        :roast,
-        ratings_attributes: [
-          :rating
-        ],
-        roaster_attributes: [
+      params.require(:cup).permit(
+        :brew_id, 
+        coffee_attributes: [
           :name,
-          :location
+          :roast,
+          roaster_attributes: [
+            :name,
+            :location
+          ]
+        ],
+        rating_attributes: [
+          :rating,
+          :user_id
         ]
-      ]
       )
     end
 
