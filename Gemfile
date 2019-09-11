@@ -9,6 +9,8 @@ gem 'rails', '~> 5.2.3'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+# thin start server in order to ensure Rails is using https
+gem 'thin'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -28,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
  gem 'bcrypt', '~> 3.1.7'
 
  gem 'omniauth'
+ gem 'omniauth-github'
+ gem 'dotenv-rails'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
