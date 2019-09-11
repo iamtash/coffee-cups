@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user
+    helper_method :current_user, :logged_in?
 
     def login(email:, password:)
         user = User.find_by(email: email)
-        if user && user.authenticate(password)
+        if user && user.authenticate(password) && user.github_nickname.nil?
           session[:user_id] = user.id
           redirect_to root_path
         else
