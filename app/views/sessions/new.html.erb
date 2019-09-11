@@ -1,12 +1,16 @@
 <%= render partial: 'message' %>
 
-<h1>User Login</h1>
+<h2>User Login</h2>
 
 <%= form_for(@user, url: sessions_path) do |f| %>
     <%= render 'users/credentials', {f: f, user: @user} %>
 
     <%= f.submit 'Log in'%>
 <% end %>
+
+<p>
+<%= link_to('Log in with GitHub!', '/auth/github') %>
+</p>
 
 <p>
 <%= link_to('Sign up', signup_path) %>
