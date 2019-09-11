@@ -1,3 +1,5 @@
-<p>
-<%= link_to('Home', root_path) %> | <%= link_to('Logout', logout_path(current_user), method: 'delete') %>
-</p>
+<% if logged_in? %>
+    <p>
+    <%= link_to('Home', root_path) %> | <%= link_to('Logout', logout_path(current_user), method: 'delete') %>
+    </p>
+<% end %>
