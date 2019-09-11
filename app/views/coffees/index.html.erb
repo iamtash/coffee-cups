@@ -1,2 +1,7 @@
-<h1>Coffees#index</h1>
-<p>Find me in app/views/coffees/index.html.erb</p>
+<h2>Coffee Index</h2>
+
+<table>
+<% @coffees.sort_by {|coffee| coffee.name}.each do |coffee| %>
+    <tr><td><%= coffee_link(coffee) %></td><td>// <%= roaster_link(coffee.roaster) %></td></tr>
+<% end %>
+</table>

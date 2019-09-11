@@ -9,5 +9,6 @@ class CoffeesController < ApplicationController
   end
 
   def index
+    @coffees = Coffee.all
   end
 end
