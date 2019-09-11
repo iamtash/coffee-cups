@@ -10,5 +10,8 @@ class Rating < ApplicationRecord
         SCALE
     end
 
+    def out_of_five
+        "#{self.rating}/5"
+    end
 
 end
