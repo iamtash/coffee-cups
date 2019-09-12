@@ -34,7 +34,7 @@ class CupsController < ApplicationController
     @roasts = Coffee.roasts
     @roaster = @coffee.roaster
     @scale = Rating.scale
-    @rating = @cup.rating
+    @rating = @cup.rating || @cup.build_rating
   end
 
   def update
