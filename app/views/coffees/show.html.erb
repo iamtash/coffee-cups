@@ -1,2 +1,19 @@
-<h1>Coffees#show</h1>
-<p>Find me in app/views/coffees/show.html.erb</p>
+<h2><%= @coffee.name %></h2>
+
+<h3><%= roaster_link(@coffee.roaster) %></h3>
+
+<h4><i><%= @coffee.roast %> roast</h4></i>
+
+<h4><%= @coffee.name %> Feed:</h4>
+
+<% if !@cups.empty? %>
+    <ul>
+    <% @cups.each do |cup| %>
+        <%= render 'cup_li', cup: cup %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>No cups of <%= @coffee.name %> have been sipped yet!</p>
+<% end %>
+
+<%= link_to('Coffee Selection', coffees_path) %>

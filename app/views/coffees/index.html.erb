@@ -1,7 +1,7 @@
 <h2>Coffee Index</h2>
 
 <table>
-<% @coffees.sort_by {|coffee| coffee.name}.each do |coffee| %>
-    <tr><td><%= coffee_link(coffee) %></td><td>// <%= roaster_link(coffee.roaster) %></td></tr>
+<% @coffees.each do |coffee| %>
+    <%= render 'coffee_tr', coffee: coffee %>
 <% end %>
 </table>
