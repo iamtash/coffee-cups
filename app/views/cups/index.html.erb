@@ -3,10 +3,12 @@
 <h3>Welcome, <%= current_user.first_name %>!</h3>
 <h4><%= link_to("You've sipped", current_user) %> <%= pluralize(current_user.cups.size, 'cup') %>!</h4>
 
+<%= new_cup_button %>
+
 <% if !@cups.empty? %>
     <ul><%= render partial: 'cup_li', collection: @cups, as: :cup %></ul>
 <% else %>
     No one has sipped any cups yet! 
 <% end %>
 
-<%= new_cup_button %>
+
