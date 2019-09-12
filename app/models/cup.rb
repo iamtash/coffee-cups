@@ -13,7 +13,11 @@ class Cup < ApplicationRecord
     end
 
     def rating_attributes=(rating_attributes)
-        self.build_rating(rating_attributes)
+        if self.rating
+            self.rating.update(rating_attributes)
+        else 
+            self.rating = Rating.new(rating_attributes)
+        end
     end
 
     def coffee_rating
