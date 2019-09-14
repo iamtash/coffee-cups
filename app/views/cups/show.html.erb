@@ -1,7 +1,7 @@
 <p>
 <%= @user.first_name %> enjoyed <%= @cup.brew.a_or_an %> <%= @cup.brew.method %> on <%= @cup.sip_time %>.
 <br>
-The coffee was brewed with <%= link_to(@cup.coffee.name, roaster_coffee_path(@cup.coffee.roaster, @cup.coffee)) %> beans from <%= link_to(@cup.coffee.roaster.name, @cup.coffee.roaster) %>.
+The coffee was brewed with <%= coffee_link(@cup.coffee) %> beans from <%= roaster_link(@cup.coffee.roaster) %>.
 <br>
 <%= display_cup_rating(@cup) %>
 </p>
