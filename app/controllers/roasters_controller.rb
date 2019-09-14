@@ -8,5 +8,6 @@ class RoastersController < ApplicationController
 
   def show
     @roaster = set_obj(Roaster)
+    @coffees = @roaster.coffees.order(name: :asc)
   end
 end
