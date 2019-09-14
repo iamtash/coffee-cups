@@ -1,4 +1,4 @@
-<h2>Cups you've sipped</h2>
+<h3>Cups you've sipped</h3>
 
 <% if @cups.empty? %>
     You haven't sipped any cups of coffee yet!
@@ -6,10 +6,12 @@
 <% else %>
     <p><%= new_cup_button %></p>
     <ul>
-    <% @cups.each do |cup| %>
-        <%= render 'cup_li', {cup: cup} %>
-    <% end %>
+    <%= render collection: @cups, partial: 'cup_li', as: :cup %>
     </ul>
 <% end %>
+
+
+
+
 
 

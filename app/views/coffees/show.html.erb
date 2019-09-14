@@ -8,12 +8,12 @@
 
 <% if !@cups.empty? %>
     <ul>
-    <% @cups.each do |cup| %>
-        <%= render 'cup_li', cup: cup %>
-    <% end %>
+    <%= render collection: @cups, partial: 'cup_li', as: :cup %>
     </ul>
 <% else %>
     <p>No cups of <%= @coffee.name %> have been sipped yet!</p>
 <% end %>
 
 <%= link_to('Coffee Selection', coffees_path) %>
+
+

@@ -1,7 +1,7 @@
 <h2>Coffee Index</h2>
 
 <table>
-<% @coffees.each do |coffee| %>
-    <%= render 'coffee_tr', coffee: coffee %>
-<% end %>
+<%= render collection: @coffees, partial: 'coffee_tr', as: :coffee %>
 </table>
+
+

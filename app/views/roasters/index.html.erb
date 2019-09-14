@@ -1,8 +1,5 @@
 <h2>Roaster Index</h2>
 
 <table>
-<% @roasters.each do |roaster| %>
-    <%= render 'roaster_tr', roaster: roaster %>
-<% end %>
+<%= render collection: @roasters, partial: 'roaster_tr', as: :roaster %>
 </table>
-
