@@ -5,13 +5,24 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Muli&display=swap', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
-
+  
   <body>
-    <h1>Coffee Cups</h1>
-    <%= yield %>
-    <%= render 'sessions/nav' %>
+  <div id="page-container">
+    <div id="header">
+      <h1>Coffee Cups</h1>
+    </div>
+    <div id="content-wrap">
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+    <footer id="footer">
+      <%= render 'sessions/nav' %>
+    </footer>
+  </div>
   </body>
 </html>
