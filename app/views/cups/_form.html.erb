@@ -3,30 +3,36 @@
 <%= f.select :brew_id, options_from_collection_for_select(@brews, 'id', 'capitalized', f.object.brew_id) %>
 </p>
 <fieldset>
+
 <legend>Coffee</legend>
+    <div class="form_inputs">
     <%= f.fields_for :coffee, coffee do |ff| %>
         <p>
         <%= ff.label :name %><br>
-        <%= ff.text_field :name, placeholder: (error_msgs(cup, :coffee) || "Breakfast Blend") %>
+        <%= ff.text_field :name, placeholder: (error_msgs(coffee, :name) || "Breakfast Blend") %>
         </p>
 
         <p>
         <%= ff.label :roast %><br>
         <%= ff.select :roast, roasts  %>
         </p>
+</div>
 </fieldset>
 <fieldset>
+
 <legend>Roaster</legend>
+        <div class="form_inputs">
         <%= ff.fields_for :roaster, roaster do |fff| %>
             <p>
             <%= fff.label :name %><br>
-            <%= fff.text_field :name, placeholder: (error_msgs(coffee, :roaster) || "Starbucks") %>
+            <%= fff.text_field :name, placeholder: (error_msgs(roaster, :name) || "Starbucks") %>
             </p>
 
             <p>
             <%= fff.label :location %><br>
             <%= fff.text_field :location, placeholder: (error_msgs(roaster, :location) || "Seattle") %>
             </p>
+</div>
 </fieldset>
         <% end %>
     <% end %>
