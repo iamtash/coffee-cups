@@ -1,2 +1,9 @@
-<h1>Roasters#show</h1>
-<p>Find me in app/views/roasters/show.html.erb</p>
+<h2><%= @roaster.name %></h2> 
+<h3><i><%= @roaster.location %></i></h3>
+
+<h4>Their coffee beans:</h4>
+<table>
+<%= render collection: @coffees, partial: 'coffee_tr', as: :coffee %>
+</table>
+
+<p><%= link_to('Coffee Roasters', roasters_path) %></p>
