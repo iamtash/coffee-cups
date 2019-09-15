@@ -3,6 +3,7 @@ class Coffee < ApplicationRecord
     has_many :cups
     has_many :users, through: :cups
     has_many :ratings, through: :cups
+    before_validation :normalize_name
     validates :name, presence: true, uniqueness: {scope: :roaster, case_sensitive: false}
     validates :roast, presence: true
     validates_associated :roaster
@@ -14,8 +15,13 @@ class Coffee < ApplicationRecord
     end
 
     def roaster_attributes=(roaster_attributes)
-        self.roaster = Roaster.where(name: roaster_attributes[:name]).first_or_create do |roaster|
-            roaster.update(roaster_attributes)
-        end
+        self.roaster = Roaster.new(roaster_attributes) if self.roaster.nil?
     end
+
+    scope :ordered_by_roaster, -> { self.includes(:roaster).order("roasters.name asc") }
+
+    private
+        def normalize_name
+            normalize(name: name)
+        end
 end
