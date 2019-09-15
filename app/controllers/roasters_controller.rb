@@ -1,13 +1,14 @@
 class RoastersController < ApplicationController
-  def new
-  end
-
+  before_action :require_login
+  
   def index
-    @roasters = Roaster.order(name: :asc)
+    @roasters = Roaster.ordered_by_name
   end
 
   def show
     @roaster = set_obj(Roaster)
-    @coffees = @roaster.coffees.order(name: :asc)
+    @coffees = @roaster.coffees.ordered_by_name
   end
 end
+
+
