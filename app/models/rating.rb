@@ -1,6 +1,6 @@
 class Rating < ApplicationRecord
     belongs_to :user
-    belongs_to :cup
+    has_one :cup
     has_one :coffee, through: :cup
     validates_associated :coffee
 

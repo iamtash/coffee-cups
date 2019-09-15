@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_033851) do
+ActiveRecord::Schema.define(version: 2019_09_15_160226) do
 
   create_table "brews", force: :cascade do |t|
     t.string "method"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_033851) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "brew_id"
+    t.integer "rating_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -39,7 +40,6 @@ ActiveRecord::Schema.define(version: 2019_09_11_033851) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "cup_id"
   end
 
   create_table "roasters", force: :cascade do |t|
