@@ -8,6 +8,7 @@ Coffee Cups is a tiny Content Management System (CMS) that allows users to, upon
 * Create, rate, track, edit, and delete cups of coffee they consume
 * Publish new coffee beans and coffee roasters to the app's public library of Coffees and Roasters
 * View what other users are sippin' on
+* Receive recommendations for new coffees to try
 
 
 Usage
