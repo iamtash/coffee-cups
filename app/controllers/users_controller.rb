@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     redirect_to login_path unless logged_in?
     @user = set_obj(User)
     @cups = @user.cups.order(created_at: :desc)
+    @recs = @user.make_recommendations(current_user)
   end
 
   private

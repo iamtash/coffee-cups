@@ -1,12 +1,19 @@
-<h3>Cups you've sipped</h3>
+<h2>Cups <%= youve_or_other(current_user) %> sipped</h2>
 
 <% if @cups.empty? %>
-    You haven't sipped any cups of coffee yet!
-    <p><%= new_cup_button %></p>
+    <%= who_hasnt(current_user) %> sipped any cups of coffee yet!
+    <p><%= new_cup_button if current_user == @user %></p>
 <% else %>
-    <p><%= new_cup_button %></p>
+    <p><%= new_cup_button if current_user == @user %></p>
     <ul>
     <%= render collection: @cups, partial: 'cup_li', as: :cup %>
+    </ul>
+<% end %>
+
+<% if !@recs.empty? %>
+    <h2>Coffees we recommend</h2>
+    <ul>
+    <%= render collection: @recs, partial: 'coffees/coffee_tr', as: :coffee %>
     </ul>
 <% end %>
 
