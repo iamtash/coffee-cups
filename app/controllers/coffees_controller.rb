@@ -1,9 +1,5 @@
 class CoffeesController < ApplicationController
-  def new
-  end
-
-  def edit
-  end
+  before_action :require_login
 
   def show
     @coffee = set_obj(Coffee)
@@ -11,6 +7,8 @@ class CoffeesController < ApplicationController
   end
 
   def index
-    @coffees = Coffee.order(name: :asc)
+      @coffees = Coffee.ordered_by_roaster
   end
 end
+
+
