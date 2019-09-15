@@ -1,4 +1,5 @@
 <p>
+<%= f.hidden_field :user_id, value: current_user.id %>
 <%= f.label :brew_id, 'Select Brew' %><br>
 <%= f.select :brew_id, options_from_collection_for_select(@brews, 'id', 'capitalized', f.object.brew_id) %>
 </p>

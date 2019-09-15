@@ -13,7 +13,6 @@ class CupsController < ApplicationController
 
   def create
     @cup = Cup.new(cup_params)
-    @cup.user = current_user
     if @cup.save
       redirect_to user_cup_path(current_user, @cup)
     else
@@ -64,6 +63,7 @@ class CupsController < ApplicationController
   private
     def cup_params
       params.require(:cup).permit(
+        :user_id,
         :brew_id, 
         coffee_attributes: [
           :name,
