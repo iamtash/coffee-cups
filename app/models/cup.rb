@@ -2,13 +2,17 @@ class Cup < ApplicationRecord
     belongs_to :user
     belongs_to :coffee
     belongs_to :brew
-    has_one :rating
+    belongs_to :rating
     validates :user, presence: true
     validates_associated :coffee
 
     def coffee_attributes=(coffee_attributes)
-        self.coffee = Coffee.where(name: coffee_attributes[:name]).first_or_create do |coffee|
-            coffee.update(coffee_attributes)
+        if roaster = Roaster.find_by(name: coffee_attributes[:roaster_attributes][:name].downcase.titleize)
+            self.coffee = roaster.coffees.where(name: coffee_attributes[:name].downcase.titleize).first_or_create do |coffee|
+                coffee.update(coffee_attributes)
+            end
+        else
+            self.coffee = Coffee.new(coffee_attributes)
         end
     end
 
@@ -18,10 +22,6 @@ class Cup < ApplicationRecord
         else 
             self.rating = Rating.new(rating_attributes)
         end
-    end
-
-    def coffee_rating
-        self.coffee.rating.rating
     end
 
     def sip_time
