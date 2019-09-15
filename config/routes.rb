@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create]
   delete 'sessions/:id' => 'sessions#destroy', as: 'logout'
   
-  resources :roasters do
-    resources :coffees, except: :index
+  resources :roasters, only: [:index, :show] do
+    resources :coffees, only: [:show]
   end
 
   resources :coffees, only: :index
