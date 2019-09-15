@@ -1,1 +1,1 @@
-<p><li><%= link_to(cup.coffee.roaster.name, cup.coffee.roaster) %> <%= link_to(cup.coffee.name, roaster_coffee_path(cup.coffee.roaster, cup.coffee)) %> <%= link_to(cup.brew.method, cup) %> on <%= cup.sip_date %></li></p>
+<p><li><%= roaster_link(cup.coffee.roaster) %> <%= coffee_link(cup.coffee) %> <%= link_to(cup.brew.method, cup_url(cup)) %> on <%= cup.sip_date %></li></p>

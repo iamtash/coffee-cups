@@ -1,2 +1,2 @@
-<p><li><%= cup.user.first_name %> had a <%= link_to('cup', user_cup_path(cup.user, cup)) %> of <%= coffee_link(cup.coffee) %> on <%= cup.sip_date %>.</li></p>
+<p><li><%= user_link(cup.user) %> had a <%= link_to('cup', cup_url(cup)) %> of <%= coffee_link(cup.coffee) %> on <%= cup.sip_date %>.</li></p>
 
