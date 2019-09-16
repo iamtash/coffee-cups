@@ -10,7 +10,7 @@
     </ul>
 <% end %>
 
-<% if !@recs.empty? %>
+<% if @recs && !@recs.empty? %>
     <h2>Coffees we recommend</h2>
     <table>
     <%= render collection: @recs, partial: 'coffees/coffee_tr', as: :coffee %>
