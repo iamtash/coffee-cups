@@ -11,7 +11,7 @@
 <% end %>
 
 <% if @recs && !@recs.empty? %>
-    <h2>Coffees we recommend</h2>
+    <h3>Coffees we recommend</h3>
     <table>
     <%= render collection: @recs, partial: 'coffees/coffee_tr', as: :coffee %>
     </table>
