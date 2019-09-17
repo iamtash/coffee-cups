@@ -25,10 +25,10 @@ class Cup < ApplicationRecord
     end
 
     def sip_time
-        self.created_at.strftime("%A, %B %-d, %Y at %l:%M%P UTC")
+        self.created_at.localtime.strftime("%A, %B %-d, %Y at %l:%M%P")
     end
 
     def sip_date
-        self.created_at.strftime("%A, %B %-d, %Y")
+        self.created_at.localtime.strftime("%A, %B %-d, %Y")
     end
 end
