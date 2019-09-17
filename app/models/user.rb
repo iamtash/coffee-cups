@@ -48,7 +48,7 @@ class User < ApplicationRecord
 
     def coffee_recommendations(similar_users) # returns a collection of coffees recommended for the user to try
         similar_users.collect {|similar_user| similar_user.favorite_coffees
-        }.reject {|coffee| self.coffees.include?(coffee)}.first   
+        }.first.reject {|coffee| self.coffees.include?(coffee)}  
     end
 
     def make_recommendations(current_user) #runner method for users#show
