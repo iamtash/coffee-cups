@@ -13,7 +13,7 @@ Coffee Cups is a tiny Content Management System (CMS) that allows users to, upon
 
 Usage
 ------------
-Fork & clone the repository
+Clone the repository
 ```ruby
 bundle install
 rake db:migrate
