@@ -46,13 +46,19 @@ class User < ApplicationRecord
         }.reject {|u| u == user}
     end
 
+    def remove_coffees_already_tried(coffees)
+        coffees.reject {|coffee| self.coffees.include?(coffee)}
+    end
+
     def coffee_recommendations(similar_users) # returns a collection of coffees recommended for the user to try
         similar_users.collect {|similar_user| similar_user.favorite_coffees
-        }.first.reject {|coffee| self.coffees.include?(coffee)}  
+        }.first
     end
 
     def make_recommendations(current_user) #runner method for users#show
-        self.coffee_recommendations(User.compare_favorite_coffees(self)) if self == current_user
+        if self == current_user && !self.coffees.empty?
+            remove_coffees_already_tried(self.coffee_recommendations(User.compare_favorite_coffees(self)))
+        end
     end
 
 end
