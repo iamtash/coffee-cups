@@ -3,7 +3,13 @@
 <fieldset>
 <legend>User Login</legend>
 <%= form_for(@user, url: sessions_path) do |f| %>
-    <%= render 'users/credentials', {f: f, user: @user} %>
+    <p>
+    <%= f.email_field :email, placeholder: "Email" %>
+    </p>
+
+    <p>
+    <%= f.password_field :password, placeholder: "Password" %>
+    </p>
 
     <%= f.submit 'Log in'%>
 <% end %>
