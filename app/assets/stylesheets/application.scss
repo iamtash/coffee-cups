@@ -90,6 +90,14 @@ legend {
    color: rgb(68, 55, 45)
 }
 
+div.field_with_errors input {
+   border: 1px solid red;
+}
+
+div.form_inputs input {
+   width: 65%;
+}
+
 #footer {
    height: 2.5rem;
    text-align: center;
