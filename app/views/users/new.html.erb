@@ -1,7 +1,7 @@
-<h1>User Signup</h1>
-
-
+<fieldset>
+<legend>User Signup</legend>
 <%= form_for(@user) do |f| %>
+<div class="form_inputs">
     <p>
     <%= f.text_field :first_name, placeholder: (error_msgs(@user, :first_name) || "First name") %>
     </p>
@@ -10,14 +10,22 @@
     <%= f.text_field :last_name, placeholder: (error_msgs(@user, :last_name) || "Last name") %>
     </p>
 
-    <%= render 'credentials', {f: f, user: @user} %>
+    <p>
+    <%= f.email_field :email, placeholder: (error_msgs(@user, :email) || "Email") %>
+    </p>
+
+    <p>
+    <%= f.password_field :password, placeholder: (error_msgs(@user, :password) || "Password") %>
+    </p>
 
     <p>
     <%= f.password_field :password_confirmation, placeholder: (@user.errors.messages[:password_confirmation].first || 'Confirm password') %>
     </p>
-
-    <%= f.submit 'Sign up'%>
+    </div>
+    <%= f.submit 'Sign up' %>
 <% end %>
+
+</fieldset>
 
 <p>
 <%= link_to('Log in', login_path) %>
