@@ -47,7 +47,7 @@ class User < ApplicationRecord
     end
 
     def remove_coffees_already_tried(coffees)
-        coffees.reject {|coffee| self.coffees.include?(coffee)}
+        coffees.reject {|coffee| self.coffees.include?(coffee)} if coffees
     end
 
     def coffee_recommendations(similar_users) # returns a collection of coffees recommended for the user to try
