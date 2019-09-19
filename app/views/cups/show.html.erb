@@ -1,5 +1,6 @@
+<div class="block">
 <p>
-<%= @user.first_name %> enjoyed <%= @cup.brew.a_or_an %> <%= @cup.brew.method %> on <%= @cup.sip_time %>.
+<%= user_link(@user) %> enjoyed <%= @cup.brew.a_or_an %> <%= @cup.brew.method %> on <%= @cup.sip_time %>.
 <br>
 The coffee was brewed with <%= coffee_link(@cup.coffee) %> beans from <%= roaster_link(@cup.coffee.roaster) %>.
 <br>
@@ -10,5 +11,5 @@ The coffee was brewed with <%= coffee_link(@cup.coffee) %> beans from <%= roaste
     <%= button_to('Edit Cup', edit_user_cup_path(@user, @cup), method: 'get') %>
     <%= button_to('Delete Cup', @cup, method: 'delete') %>
 <% end %>
-
+</div>
 
