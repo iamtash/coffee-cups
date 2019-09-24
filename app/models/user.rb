@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :cups
+    has_many :cups, dependent: :destroy
     has_many :coffees, through: :cups
     has_many :ratings, through: :cups
     has_secure_password
@@ -14,22 +14,23 @@ class User < ApplicationRecord
     end
 
     def self.from_oauth(auth)
-        User.find_or_initialize_by(github_nickname: auth['info']['nickname']) do |u|
-            parse_github_name(u)
+        User.where(github_nickname: auth['info']['nickname']).first_or_create do |u|
+            #binding.pry
+            u.parse_github_name(auth)
             u.email = auth['info']['email'] || auth['info']['nickname']
             u.image = auth['info']['image']
-            u.password = 'chocolatecoveredalmonds'
-            u.password_confirmation = 'chocolatecoveredalmonds'
+            u.password = SecureRandom.hex(9)
+            u.password_confirmation = u.password
         end
     end
 
-    def parse_github_name(user)
+    def parse_github_name(auth)
         first_last = auth['info']['name'].split(' ')
         if first_last.length == 1
-          user.first_name = first_last 
+          self.first_name = first_last 
         else 
-          user.first_name = first_last.first
-          user.last_name = first_last.last
+          self.first_name = first_last.first
+          self.last_name = first_last.last
         end
     end
 
