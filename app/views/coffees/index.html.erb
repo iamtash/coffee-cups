@@ -4,4 +4,10 @@
 <%= render collection: @coffees, partial: 'coffee_tr', as: :coffee %>
 </table>
 
+<p>
+<%= form_tag "/coffees", method: :get do %>
+<%= text_field_tag "query" %>
+<%= submit_tag "Search" %>
+<% end %>
+</p>
 

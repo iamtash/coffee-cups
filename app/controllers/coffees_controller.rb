@@ -7,8 +7,15 @@ class CoffeesController < ApplicationController
   end
 
   def index
-      @coffees = Coffee.ordered_by_roaster
+      if params[:query]
+        # @coffees = Coffee.all.select {|coffee| coffee.name.include?(params[:query])}
+        @coffees = Coffee.where('name LIKE ?', "%#{params[:query]}%")
+        
+      else
+        @coffees = Coffee.ordered_by_roaster
+      end
   end
+
 end
 
 
