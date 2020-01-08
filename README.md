@@ -56,4 +56,5 @@ Blog & Video
 ---------
 
 [Read about what I learned while building this project!](https://iamtash.github.io/rails_project_coffeecups_2_0)
+
 [Check out a demo of my app!](https://www.youtube.com/watch?v=JxIBt6I_IyY)
