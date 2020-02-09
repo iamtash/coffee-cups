@@ -57,4 +57,7 @@ Blog & Video
 
 [Read about what I learned while building this project!](https://iamtash.github.io/rails_project_coffeecups_2_0)
 
-[Check out a demo of my app!](https://www.youtube.com/watch?v=JxIBt6I_IyY)
+Click below to check out a demo!<br>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=JxIBt6I_IyY
+" target="_blank"><img src="http://img.youtube.com/vi/JxIBt6I_IyY/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
